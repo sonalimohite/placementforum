@@ -49,7 +49,7 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>A Warm Welcome!</h1>
+            <h1>Welcome!</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
             <p><a class="btn btn-primary btn-large"  href='<c:url value="/login"/>'>Login</a>
             
@@ -63,7 +63,7 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>Jobs</h3>
+                <!--  h3>Jobs</h3 -->
             </div>
         </div>
         <!-- /.row -->
@@ -73,12 +73,14 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                   <!--  <img src="http://placehold.it/800x500" alt=""> -->
                     <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <h3>Job Title</h3>
+                        <span>Company Name</span>
+                        
+                        <p>Skills : Java, Php, MySql..</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -86,12 +88,14 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                    <!-- <img src="http://placehold.it/800x500" alt=""> -->
                     <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <h3>Job Title</h3>
+                        <span>Company Name</span>
+                        
+                        <p>Skills : Java, Php, MySql..</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -99,12 +103,14 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                    <!-- img src="http://placehold.it/800x500" alt=""-->
                     <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <h3>Job Title</h3>
+                        <span>Company Name</span>
+                        
+                        <p>Skills : Java, Php, MySql..</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
@@ -112,12 +118,14 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
+                   <!--  <img src="http://placehold.it/800x500" alt=""> -->
                     <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <h3>Job Title</h3>
+                        <span>Company Name</span>
+                        
+                        <p>Skills : Java, Php, MySql..</p>
                         <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
                         </p>
                     </div>
                 </div>
