@@ -1,6 +1,5 @@
 package com.placement.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.placement.model.Company;
-import com.placement.service.CompanyManager;
 
 @Controller
 public class HomeController {
@@ -32,8 +30,13 @@ public class HomeController {
 	public ModelAndView register() {
 		return new ModelAndView("register");
 	}
+	
+	@RequestMapping(value = "/jobdesc", method = RequestMethod.GET)
+	public ModelAndView job() {
+		return new ModelAndView("jobdesc");
+	}
 
-	@RequestMapping(value = "/company", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/company", method = RequestMethod.GET)
 	@ResponseBody
 	public String saveCompany() {
 		Company company = new Company();
@@ -41,5 +44,5 @@ public class HomeController {
 		companyManager.saveCompany(company);
 		return "Done";
 
-	}
+	}*/
 }
