@@ -34,38 +34,45 @@
 	<div class="container">
 		<h2 align="center">Please enter your details below.</h2>
 		<br/><br/>
-		<form class="form-horizontal">
+		<form class="form-horizontal" action='<c:url value="/company/save"/>' method="POST">
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Company Name</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="Please Enter Company Name">
+					<input type="text" name="name" class="form-control" placeholder="Please Enter Company Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Address</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="3"></textarea>
+					<textarea name="address" class="form-control" rows="3"></textarea>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">HR Name</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="Please Enter HR's Name">
+					<input type="text" name="hrName" class="form-control" placeholder="Please Enter HR's Name">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="Please Enter Email">
+					<input type="text" name="email" class="form-control" placeholder="Please Enter Email">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-10">
+					<input type="password" name="password" class="form-control" placeholder="Please Enter Password">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Company description</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="3"></textarea>
+					<textarea name="companyDesc" class="form-control" rows="3"></textarea>
 				</div>
 			</div>
 			
@@ -77,6 +84,7 @@
 				</div>
 			</div>
 		</form>
+		<h5 align="center">${msg}</h5>
 	</div>
 	
 	<srcipt src='<c:url value="/resources/js/jquery.js"/>'></srcipt>

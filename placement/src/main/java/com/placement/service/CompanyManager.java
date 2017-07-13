@@ -6,16 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.placement.dao.CompanyDao;
+import com.placement.dto.CompanyDto;
 import com.placement.model.Company;
 
 @Service("companyManager")
 @Transactional
 public class CompanyManager {
 
-	//@Autowired
+	@Autowired
 	private CompanyDao companyDao;
 
-	public void saveCompany(Company company) {
-		companyDao.save(company);
-	}
+    public void save(Company c){
+    	companyDao.save(c);
+    }
+	
+	
 }
