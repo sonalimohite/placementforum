@@ -24,6 +24,15 @@ public class JobDao {
 		getSession().persist(entity);
 	}
 	
+	
+	
+	public void delete(Integer id){
+		Query query=getSession().createQuery("delete from Job j where j.id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
+		
+	}
+	
 	public List<Job> getAllJobs(){
 		Query query=getSession().createQuery("select j from Job j ");
 		return query.list();

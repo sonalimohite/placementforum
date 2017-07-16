@@ -16,6 +16,7 @@ public class JobManager {
      
 	@Autowired
 	private JobDao jobDao;
+	
 	public void save(Job e){
 		jobDao.save(e);
 	}
@@ -26,5 +27,11 @@ public class JobManager {
 	
 	public List<Job> getJobsByCompanyId(int companyId){
 		return jobDao.getJobsByCompanyId(companyId);
+	}
+	
+	public void delete(Integer id){
+		
+
+		jobDao.delete(id);
 	}
 }

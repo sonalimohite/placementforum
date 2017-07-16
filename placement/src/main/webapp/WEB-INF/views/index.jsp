@@ -35,7 +35,10 @@
                         <a href="#">Companies</a>
                     </li>
                     <li>
-                        <a href="#">Student</a>
+                        <a href="#">Students</a>
+                    </li>
+                    <li>
+                    	<a href="<c:url value="/login"/>">Login</a>
                     </li>
                 </ul>
             </div>
@@ -48,13 +51,15 @@
     <div class="container">
 
         <!-- Jumbotron Header -->
-        <header class="jumbotron hero-spacer">
+        <!-- header class="jumbotron hero-spacer" 
+        style="background-image: url('<c:url value="/resources/img/jobs.jpg"/>');background-repeat: no-repeat;background-size: cover;" -->
+         <header class="jumbotron hero-spacer">
             <h1>Welcome!</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-            <p><a class="btn btn-primary btn-large"  href='<c:url value="/login"/>'>Login</a>
+            <p>Looking for a job register as student, or looking for employee register as company.</p>
+            <p><a class="btn btn-primary btn-large"  href='#'>Register as Student</a>
             
 			
-			<a class="btn btn-primary btn-large" href='<c:url value="/register"/>'>Register</a>
+			<a class="btn btn-primary btn-large" href='<c:url value="/register"/>'>Register as Company</a>
             </p>
         </header>
 
@@ -70,7 +75,7 @@
 
         <!-- Page Features -->
         <div class="row text-center">
-        	<h4>Recent Posted Jobs</h4>
+        	<h2>Recent Posted Jobs</h2>
 			<c:forEach items="${uiJobs}" var="job">
      			<div class="col-md-3 col-sm-6 hero-feature">
 	                <div class="thumbnail">
@@ -81,7 +86,7 @@
 	                        
 	                        <p>Skills : ${job.keySkills}</p>
 	                        <p>
-	                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
+	                            <a href="#" class="btn btn-primary">Apply</a> 
 	                        </p>
 	                    </div>
 	                </div>
@@ -96,7 +101,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                   
                 </div>
             </div>
         </footer>

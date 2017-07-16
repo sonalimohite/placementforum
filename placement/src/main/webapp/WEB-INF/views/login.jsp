@@ -84,7 +84,7 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span> 
-												<input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+												<input class="form-control" placeholder="Username" name="username" type="text" data-validation="required" autofocus>
 											</div>
 										</div>
 										<div class="form-group">
@@ -92,7 +92,7 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
 												</span>
-												<input class="form-control" placeholder="Password" name="password" type="password" value="">
+												<input class="form-control" placeholder="Password" name="password" type="password"  data-validation="required">
 											</div>
 										</div>
 										<div class="form-group">
@@ -114,6 +114,10 @@
 	<script src='<c:url value="/resources/js/jquery.js"/>'></script>
 
 	<script src='<c:url value="/resources/js/bootstrap.js"/>'></script>
+	<script src='<c:url value="/resources/js/jquery.form-validator.min.js"/>'></script>
+	<script>
+	  $.validate();
+	</script>
 
 </body>
 

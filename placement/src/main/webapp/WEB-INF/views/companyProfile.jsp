@@ -33,7 +33,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="#">Edit Profile</a></li>
-					<li><a href="<c:url value='/job/add'/>">Add Job</a></li>
+					
 					<li><a href="<c:url value='/auth/logout'/>">Logout</a></li>
 				</ul>
 			</div>
@@ -44,7 +44,7 @@
 	<div class="container">
 		<div class="col-xs-3" style="padding:0%">
 			<div class="col-xs-12" style="border: 1px solid #CCC;padding:2%">
-				<h2><span class="glyphicon glyphicon-lock"></span> ${company.name}</h2>
+				<h2><span class="glyphicon glyphicon-briefcase"></span> ${company.name}</h2>
 				<small><span class="glyphicon glyphicon-user"></span> ${company.hrName}</small><br /> 
 				<span class="glyphicon glyphicon-envelope"></span> ${company.email}<br />
 				<span class="glyphicon glyphicon-home"></span> ${company.address}<br />
@@ -74,7 +74,7 @@
 							</div>
 							<div class="panel-footer">
 								<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-								<button type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+								<a href="<c:url value='/job/delete?id='/>${job.id}" class="btn btn-danger"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a>
 							</div>
 						</div>
 					</div>
@@ -96,42 +96,45 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Job Title</label>
 				<div class="col-sm-10">
-					<input type="text" name="jobTitle" class="form-control" placeholder="Please Enter Job Title">
+					<input type="text" name="jobTitle" class="form-control" 
+					data-validation="required"
+					data-validation-error-msg="Job Title is Required."
+					placeholder="Please Enter Job Title">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Job Description</label>
 				<div class="col-sm-10">
-					<textarea name="jobDescription" class="form-control" rows="3"></textarea>
+					<textarea name="jobDescription" class="form-control" rows="3" data-validation="required" ></textarea>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Job Location</label>
 				<div class="col-sm-10">
-					<input type="text" name="jobLocation" class="form-control" placeholder="Please Enter Job Location">
+					<input type="text" name="jobLocation" class="form-control" data-validation="required"  placeholder="Please Enter Job Location">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Key Skills</label>
 				<div class="col-sm-10">
-					<textarea name="keySkills" class="form-control" rows="3"></textarea>
+					<textarea name="keySkills" class="form-control" rows="3" data-validation="required"></textarea>
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Experience</label>
 				<div class="col-sm-10">
-					<input type="text" name="experience" class="form-control" placeholder="Please Enter Experience">
+					<input type="text" name="experience" class="form-control" data-validation="required"  placeholder="Please Enter Experience">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Job Profile</label>
 				<div class="col-sm-10">
-					<input type="text" name="jobProfile" class="form-control" placeholder="Please Enter Job Profile">
+					<input type="text" name="jobProfile" class="form-control" data-validation="required"  placeholder="Please Enter Job Profile">
 				</div>
 			</div>
 			
@@ -151,5 +154,9 @@
 
 	<script src='<c:url value="/resources/js/jquery.js"/>'></script>
 	<script src='<c:url value="/resources/js/bootstrap.js"/>'></script>
+	<script src='<c:url value="/resources/js/jquery.form-validator.min.js"/>'></script>
+	<script>
+	  $.validate();
+	</script>
 </body>
 </html>
