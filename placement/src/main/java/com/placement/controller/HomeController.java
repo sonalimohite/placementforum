@@ -1,5 +1,7 @@
 package com.placement.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.placement.model.Company;
+import com.placement.model.Job;
 import com.placement.service.CompanyManager;
+import com.placement.service.JobManager;
 
 @Controller
 public class HomeController {
@@ -17,10 +21,16 @@ public class HomeController {
 	@Autowired
 	private CompanyManager companyManager;
 
+	
+	@Autowired
+	private JobManager jobManager;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(ModelMap model) {
-		model.addAttribute("message", "Spring MVC XML Config Example");
-		return "index";
+	public ModelAndView index() {
+	List<Job> jobs=jobManager.getAllJobs();
+		ModelAndView mv=new ModelAndView("index");
+		mv.addObject("uiJobs",jobs);
+		return mv;
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -32,14 +42,6 @@ public class HomeController {
 	public ModelAndView register() {
 		return new ModelAndView("register");
 	}
-
-	@RequestMapping(value = "/company", method = RequestMethod.GET)
-	@ResponseBody
-	public String saveCompany() {
-		Company company = new Company();
-		company.setName("Test");
-		//companyManager.saveCompany(company);
-		return "Done";
-
-	}
+	
+	
 }

@@ -17,14 +17,14 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Placement Forum</a>
+				<a class="navbar-brand" href="<c:url value='/company/profile'/>">Placement Forum</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">About</a></li>
-					<li><a href="#">Companies</a></li>
-					<li><a href="#">Student</a></li>
+					<li><a href="#">Edit Profile</a></li>
+					<li><a href="<c:url value='/job/add'/>">Add Job</a></li>
+					<li><a href="<c:url value='/auth/logout'/>">Logout</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -32,47 +32,48 @@
 		<!-- /.container -->
 	</nav>
 	<div class="container">
-		<h2 align="center">Please enter your details below.</h2>
-		<br/><br/>
-		<form class="form-horizontal" action='<c:url value="/company/save"/>' method="POST">
+		<br/>
+		<form class="form-horizontal" action='<c:url value="/job/save"/>' method="POST">
+			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Company Name</label>
+				<label class="col-sm-2 control-label">Job Title</label>
 				<div class="col-sm-10">
-					<input type="text" name="name" class="form-control" placeholder="Please Enter Company Name">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Address</label>
-				<div class="col-sm-10">
-					<textarea name="address" class="form-control" rows="3"></textarea>
+					<input type="text" name="jobTitle" class="form-control" placeholder="Please Enter Job Title">
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">HR Name</label>
+				<label class="col-sm-2 control-label">Job Description</label>
 				<div class="col-sm-10">
-					<input type="text" name="hrName" class="form-control" placeholder="Please Enter HR's Name">
+					<textarea name="jobDescription" class="form-control" rows="3"></textarea>
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Email</label>
+				<label class="col-sm-2 control-label">Job Location</label>
 				<div class="col-sm-10">
-					<input type="text" name="email" class="form-control" placeholder="Please Enter Email">
+					<input type="text" name="jobLocation" class="form-control" placeholder="Please Enter Job Location">
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Password</label>
+				<label class="col-sm-2 control-label">Key Skills</label>
 				<div class="col-sm-10">
-					<input type="password" name="password" class="form-control" placeholder="Please Enter Password">
+					<textarea name="keySkills" class="form-control" rows="3"></textarea>
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Company description</label>
+				<label class="col-sm-2 control-label">Experience</label>
 				<div class="col-sm-10">
-					<textarea name="companyDesc" class="form-control" rows="3"></textarea>
+					<input type="text" name="experience" class="form-control" placeholder="Please Enter Experience">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Job Profile</label>
+				<div class="col-sm-10">
+					<input type="text" name="jobProfile" class="form-control" placeholder="Please Enter Job Profile">
 				</div>
 			</div>
 			
@@ -80,7 +81,7 @@
 			
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Register</button>
+					<button type="submit" class="btn btn-primary">Save</button>
 				</div>
 			</div>
 		</form>

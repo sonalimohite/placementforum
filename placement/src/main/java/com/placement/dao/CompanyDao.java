@@ -1,5 +1,8 @@
 package com.placement.dao;
 
+
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,19 @@ public class CompanyDao{
 
 	public void save(Company entity) {
 		getSession().persist(entity);
+	}
+	
+	public Company getById(Integer id){
+		Query query = getSession().createQuery("select c from Company c where c.id = :id");
+		query.setParameter("id", id);
+		return (Company) query.uniqueResult();
+	}
+	
+	public Company verify(String username,String password){
+		Query query=getSession().createQuery("select c from Company c where c.email = :username and c.password= :password ");
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		return (Company)query.uniqueResult();
 	}
 
 }

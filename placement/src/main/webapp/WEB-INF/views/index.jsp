@@ -70,67 +70,23 @@
 
         <!-- Page Features -->
         <div class="row text-center">
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                   <!--  <img src="http://placehold.it/800x500" alt=""> -->
-                    <div class="caption">
-                        <h3>Job Title</h3>
-                        <span>Company Name</span>
-                        
-                        <p>Skills : Java, Php, MySql..</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <!-- <img src="http://placehold.it/800x500" alt=""> -->
-                    <div class="caption">
-                        <h3>Job Title</h3>
-                        <span>Company Name</span>
-                        
-                        <p>Skills : Java, Php, MySql..</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <!-- img src="http://placehold.it/800x500" alt=""-->
-                    <div class="caption">
-                        <h3>Job Title</h3>
-                        <span>Company Name</span>
-                        
-                        <p>Skills : Java, Php, MySql..</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                   <!--  <img src="http://placehold.it/800x500" alt=""> -->
-                    <div class="caption">
-                        <h3>Job Title</h3>
-                        <span>Company Name</span>
-                        
-                        <p>Skills : Java, Php, MySql..</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
+        	<h4>Recent Posted Jobs</h4>
+			<c:forEach items="${uiJobs}" var="job">
+     			<div class="col-md-3 col-sm-6 hero-feature">
+	                <div class="thumbnail">
+	                   <!--  <img src="http://placehold.it/800x500" alt=""> -->
+	                    <div class="caption">
+	                        <h3>${job.jobTitle}</h3>
+	                        <span>${job.company.name}</span>
+	                        
+	                        <p>Skills : ${job.keySkills}</p>
+	                        <p>
+	                            <a href="#" class="btn btn-primary">Apply</a> <a href="#" class="btn btn-default">More Info</a>
+	                        </p>
+	                    </div>
+	                </div>
+	            </div>
+			</c:forEach>  
         </div>
         <!-- /.row -->
 
@@ -149,7 +105,7 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-     <srcipt src='<c:url value="/resources/js/jquery.js"/>' ></srcipt>
+     <script src='<c:url value="/resources/js/jquery.js"/>'></script>
     
 
     <!-- Bootstrap Core JavaScript -->
