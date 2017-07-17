@@ -13,25 +13,28 @@ import com.placement.model.Job;
 @Service("jobManager")
 @Transactional
 public class JobManager {
-     
+
 	@Autowired
 	private JobDao jobDao;
-	
-	public void save(Job e){
+
+	public void save(Job e) {
 		jobDao.save(e);
 	}
-	
-	public List<Job> getAllJobs(){
+
+	public List<Job> getAllJobs() {
 		return jobDao.getAllJobs();
 	}
-	
-	public List<Job> getJobsByCompanyId(int companyId){
+
+	public List<Job> getJobsByCompanyId(int companyId) {
 		return jobDao.getJobsByCompanyId(companyId);
 	}
-	
-	public void delete(Integer id){
-		
+
+	public void delete(Integer id) {
 
 		jobDao.delete(id);
+	}
+
+	public Job getJobById(Integer id) {
+		return jobDao.getJobById(id);
 	}
 }

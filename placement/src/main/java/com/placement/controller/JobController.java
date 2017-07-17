@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.placement.model.Company;
 import com.placement.model.Job;
 import com.placement.service.CompanyManager;
@@ -43,4 +45,17 @@ public class JobController {
 		response.sendRedirect(request.getContextPath() + "/company/profile");
 
 	}
+
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public ModelAndView viewJob(@RequestParam Integer id) {
+
+		Job job = jobManager.getJobById(id);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("viewJob");
+		mv.addObject("job", job);
+		return mv;
+
+	}
+
 }

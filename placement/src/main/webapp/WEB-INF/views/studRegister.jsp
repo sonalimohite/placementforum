@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 <link href='<c:url value="/resources/css/bootstrap.css"/>' rel="stylesheet">
 <link href='<c:url value="/resources/css/heroic-features.css"/>' rel="stylesheet">
-
 <style>
 	.form-control{
 		border: none;
@@ -41,29 +40,29 @@
 		<!-- /.container -->
 	</nav>
 	<div class="container">
-		<h3 align="center"> <span class="glyphicon glyphicon-briefcase"></span> Company Registration</h3>
-		<hr style='width:20%;'/>
-		<h5 align="center"> Enter company details below</h5>
+		<h3 align="center"> <span class="glyphicon glyphicon-user"></span> Student Registration</h3>
+		<hr style="width:20%"/>
+		<h5 align="center">Enter your details</h5>
 		<br/>
-		<div style="width:80%;margin:0 auto;">
-			<form class="form-horizontal" action='<c:url value="/company/save"/>' method="POST">
+		<div style="width:60%;margin: 0 auto;">
+			<form class="form-horizontal" action='<c:url value="/student/save"/>' method="POST">
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Company Name</label>
+					<label class="col-sm-2 control-label">First Name</label>
 					<div class="col-sm-10">
-						<input type="text" name="name" class="form-control" placeholder="Please Enter Company Name"  data-validation="required" >
+						<input type="text" name="firstName" class="form-control" placeholder="Please Enter First Name"  data-validation="required" >
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Address</label>
+					<label class="col-sm-2 control-label">Last Name</label>
 					<div class="col-sm-10">
-						<textarea name="address" class="form-control" rows="3"  data-validation="required" ></textarea>
+						<input type="text" name="lastName" class="form-control" placeholder="Please Enter Last Name"  data-validation="required" >
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">HR Name</label>
+					<label class="col-sm-2 control-label">College Name</label>
 					<div class="col-sm-10">
-						<input type="text" name="hrName" class="form-control" placeholder="Please Enter HR's Name"  data-validation="required" >
+						<input type="text" name="collegeName" class="form-control" placeholder="Please Enter College Name"  data-validation="required" >
 					</div>
 				</div>
 				
@@ -77,14 +76,28 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Password</label>
 					<div class="col-sm-10">
-						<input type="password" name="password" class="form-control" placeholder="Please Enter Password"  data-validation="required" >
+						<input type="password" name="password" class="form-control" placeholder="Please Enter Email"  data-validation="required" >
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Company Description</label>
+					<label class="col-sm-2 control-label">Qualification</label>
 					<div class="col-sm-10">
-						<textarea name="companyDesc" class="form-control" rows="3"  data-validation="required" ></textarea>
+						<input type="text" name="qualification" class="form-control" placeholder="Please Enter qualification"  data-validation="required" >
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Year of Passing</label>
+					<div class="col-sm-10">
+						<input type="text" name="yearOfPassing" class="form-control" placeholder="Please Enter Year of Passing"  data-validation="required" >
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Branch</label>
+					<div class="col-sm-10">
+						<input type="text" name="branch" class="form-control" placeholder="Please Enter Branch"  data-validation="required" >
 					</div>
 				</div>
 				

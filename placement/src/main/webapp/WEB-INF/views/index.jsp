@@ -32,10 +32,10 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="#">Companies</a>
+                        <a href="<c:url value='company/list'/>">Companies</a>
                     </li>
                     <li>
-                        <a href="#">Students</a>
+                        <a href="<c:url value='student/list'/>">Students</a>
                     </li>
                     <li>
                     	<a href="<c:url value="/login"/>">Login</a>
@@ -56,10 +56,10 @@
          <header class="jumbotron hero-spacer">
             <h1>Welcome!</h1>
             <p>Looking for a job register as student, or looking for employee register as company.</p>
-            <p><a class="btn btn-primary btn-large"  href='#'>Register as Student</a>
+            <p><a class="btn btn-primary btn-large"  href='<c:url value="student/register"/>'>Register as Student</a>
             
 			
-			<a class="btn btn-primary btn-large" href='<c:url value="/register"/>'>Register as Company</a>
+			<a class="btn btn-primary btn-large" href='<c:url value="company/register"/>'>Register as Company</a>
             </p>
         </header>
 
@@ -86,7 +86,7 @@
 	                        
 	                        <p>Skills : ${job.keySkills}</p>
 	                        <p>
-	                            <a href="#" class="btn btn-primary">Apply</a> 
+	                            <a href="<c:url value='/job/view?id='/>${job.id}" class="btn btn-primary">Apply</a> 
 	                        </p>
 	                    </div>
 	                </div>

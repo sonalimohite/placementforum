@@ -1,5 +1,7 @@
 package com.placement.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ public class CompanyManager {
 	}
     public void save(Company c){
     	companyDao.save(c);
+    }
+    
+    public List<Company> getAllCompanies(){
+    	return companyDao.getAllCompanies();
     }
 	
 	

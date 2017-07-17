@@ -46,15 +46,15 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Placement Forum</a>
+				<a class="navbar-brand" href="<c:url value='/'/>">Placement Forum</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="#">About</a></li>
-					<li><a href="#">Companies</a></li>
-					<li><a href="#">Student</a></li>
+					<li><a href="<c:url value='/company/list'/>">Companies</a></li>
+					<li><a href="<c:url value='/student/list'/>">Student</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

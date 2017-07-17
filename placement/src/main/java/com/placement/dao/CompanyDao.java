@@ -1,6 +1,6 @@
 package com.placement.dao;
 
-
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -35,6 +35,12 @@ public class CompanyDao{
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		return (Company)query.uniqueResult();
+	}
+	
+	public List<Company> getAllCompanies(){
+		Query query = getSession().createQuery("select a from Company a");
+		
+		return  query.list();
 	}
 
 }
