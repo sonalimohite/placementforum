@@ -51,14 +51,9 @@ public class CompanyController {
 
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(HttpServletRequest request,HttpServletResponse response, Company c) throws IOException {
+	public void save(HttpServletRequest request,HttpServletResponse response, Company c) throws IOException {
 		companyManager.save(c);
-
-		ModelAndView mv = new ModelAndView();
 		response.sendRedirect(request.getContextPath()+"/login");
-
-		mv.addObject("msg", "Registration Successfull");
-		return mv;
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)

@@ -51,10 +51,17 @@
 		<!-- /.container -->
 	</nav>
 	<div class="container">
-		<c:forEach items="${companies}" var="company">
-		${company.name}
-	
-	</c:forEach>
+		<table class="table table-bordered" style="width:70%;margin:0 auto;">
+			<thead>
+				<tr><th>Name</th><th>Address</th></tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${companies}" var="company">
+					<tr><td>${company.name}</td><td>${company.address}</td></tr>	
+				</c:forEach>
+			</tbody>
+		</table>
+		
 	</div>
 
 	<script src='<c:url value="/resources/js/jquery.js"/>'></script>

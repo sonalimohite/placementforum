@@ -50,6 +50,7 @@
 				<span class="glyphicon glyphicon-home"></span> ${company.address}<br />
 			</div>
 			<button type="button" class="btn btn-primary" style="width: 100%;margin-top: 5%;" data-toggle="modal" data-target=".bs-example-modal-lg"><span class="glyphicon glyphicon-bullhorn"></span> Post new job</button>
+			<a class="btn btn-primary" href="<c:url value='/exam/examcenter'/>" style="width: 100%;margin-top: 5%;"><span class="glyphicon glyphicon-pencil"></span> Exam Center</a>
 		</div>
 		<div class="col-xs-9">
 			<c:forEach items="${jobs}" var="job">

@@ -51,10 +51,23 @@
 		<!-- /.container -->
 	</nav>
 	<div class="container">
-		<c:forEach items="${students}" var="student">
-		${student.firstName} ${student.lastName}
 	
-	</c:forEach>
+		<table class="table table-bordered" style="width:70%;margin:0 auto;">
+			<thead>
+				<tr><th>Name</th><th>Qualification</th><th>College</th><th>Year Of Passing</th></tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${students}" var="student">
+					<tr>
+						<td>${student.firstName} ${student.lastName}</td>
+						<td>${student.qualification}</td>
+						<td>${student.collegeName}</td>
+						<td>${student.yearOfPassing}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		
 	</div>
 
 	<script src='<c:url value="/resources/js/jquery.js"/>'></script>
