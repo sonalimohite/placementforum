@@ -40,6 +40,10 @@ public class Job {
 	@JoinColumn(name = "company_id", nullable = false)
 	private Company company;
 
+	@ManyToOne
+	@JoinColumn(name = "exam_id", nullable = false)
+	private Exam exam;
+
 	public int getId() {
 		return id;
 	}
@@ -47,8 +51,6 @@ public class Job {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	
 
 	public String getJobTitle() {
 		return jobTitle;
@@ -105,4 +107,13 @@ public class Job {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	public Exam getExam() {
+		return exam;
+	}
+
+	public void setExam(Exam exam) {
+		this.exam = exam;
+	}
+
 }

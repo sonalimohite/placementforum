@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.placement.model.Company;
+import com.placement.model.Student;
 import com.placement.service.LoginManager;
 
 @Controller
@@ -26,15 +27,26 @@ public class LoginController {
 	@RequestMapping(value = "/verify", method = RequestMethod.POST)
 	public ModelAndView verify(HttpServletRequest request, HttpServletResponse response, @RequestParam String username,
 			@RequestParam String password) throws IOException {
-		Company company = loginManager.verify(username, password);
+		
+		Company company = loginManager.verifyCompany(username, password);
 		if (company != null) {
-
 			HttpSession session = request.getSession(true);
 			session.setAttribute("companyId", company.getId());
 			response.sendRedirect(request.getContextPath() + "/company/profile");
+			return null;
 		}
-
-		return null;
+		
+		Student student = loginManager.verifyStudent(username, password);
+		if(student != null){
+			HttpSession session = request.getSession(true);
+			session.setAttribute("studentId", student.getId());
+			response.sendRedirect(request.getContextPath());
+			return null;
+		}		
+		
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("msg", "Invalid Username/Password..! Try again.");
+		return mv;
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

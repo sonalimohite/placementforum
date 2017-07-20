@@ -139,6 +139,17 @@
 				</div>
 			</div>
 			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Choose Exam</label>
+				<div class="col-sm-10">
+				
+					<select name="exam.id" class="form-control">
+						<c:forEach items="${exams}" var="exam">
+							<option value="${exam.id}">${exam.name}</option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
 			
 			
 			<div class="form-group">

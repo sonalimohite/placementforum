@@ -95,6 +95,7 @@
 												<input class="form-control" placeholder="Password" name="password" type="password"  data-validation="required">
 											</div>
 										</div>
+										<h6 style="color:red;" align='center'>${msg}</h6>
 										<div class="form-group">
 											<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
 										</div>

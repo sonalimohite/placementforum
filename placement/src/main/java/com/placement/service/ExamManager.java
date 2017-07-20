@@ -1,5 +1,7 @@
 package com.placement.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,14 @@ public class ExamManager {
 			}
 		}
 		examDao.save(exam);
+	}
+	
+	public Exam getById(int id){
+		return examDao.getById(id);
+	}
+	
+	public List<Exam> getAllExam(int companyId) {
+		return examDao.getAllExam(companyId);
 	}
 
 }

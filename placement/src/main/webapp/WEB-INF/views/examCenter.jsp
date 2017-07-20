@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Placement Forum - Login</title>
+<title>Placement Forum - Exam Center</title>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
 	rel="stylesheet">
 <link href='<c:url value="/resources/css/bootstrap.css"/>'
@@ -41,8 +41,23 @@
 		</div>
 		<!-- /.container -->
 	</nav>
-	<div class="container">
-		<div class="col-xs-4"></div>
+	<div class="container" >
+		<div class="col-xs-4" >
+			<table class="table table-bordered" >
+				<thead>
+					<tr><th>List Of The Exam</th></tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${examCenters}" var="examCenter">
+						<tr>
+							<td>${examCenter.name} </td>
+							
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		
 		<div class="col-xs-8">
 			<div class="page-header">
 			  <h1>Exam <small>Add new</small></h1>
@@ -132,7 +147,7 @@
 			$("#save-exam").click(function(e){
 				e.preventDefault();
 				var questions = [];
-				
+				var btn = $("#save-exam").button("loading");
 				$("#question-container > div").each(function(index,element){
 					var obj = {
 							"question" : null,
@@ -160,7 +175,6 @@
 						"questions": questions
 				};
 				
-				alert(JSON.stringify(exam));
 				 $.ajax({
 				      type: "POST",
 				      contentType : 'application/json; charset=utf-8',
@@ -168,7 +182,9 @@
 				      url: "<c:url value='/exam/save'/>",
 				      data: JSON.stringify(exam), 
 				      success :function(result) {
-				      
+				    	  $("input").val("");
+				    	  $(btn).button("reset");
+				    	  location.reload();				      
 				     }
 				  });
 			});					

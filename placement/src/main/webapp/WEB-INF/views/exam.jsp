@@ -32,7 +32,6 @@
 					<li><a href="#">About</a></li>
 					<li><a href="<c:url value='/company/list'/>">Companies</a></li>
 					<li><a href="<c:url value='/student/list'/>">Student</a></li>
-					<li><a href="<c:url value="/login"/>">Login</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -40,41 +39,49 @@
 		<!-- /.container -->
 	</nav>
 	<div class="container">
-		<div class="col-xs-3">
-			<h2>
-				<span class="glyphicon glyphicon-briefcase"></span>
-				${job.company.name}
-			</h2>
-			<h6>
-				<span class="glyphicon glyphicon-user"></span> ${job.company.hrName}
-			</h6>
-			<span class="glyphicon glyphicon-home"></span><span>
-				${job.company.address}</span>
-			<h4>
-				<span class="glyphicon glyphicon-envelope"></span>
-				${job.company.email}
-			</h4>
+		<div class="col-xs-4">
+			<h4><span class="glyphicon glyphicon-user"></span> ${student.firstName } ${student.lastName}</h4>
+			<span class="glyphicon glyphicon-book"></span> ${student.collegeName}<br/>
+			<span class="glyphicon glyphicon-education"></span> ${student.qualification }<br/>
+			<span class="glyphicon glyphicon-envelope"></span> ${student.email }
+			
+		
 		</div>
-		<div class="col-xs-9" style="border: 1px solid #CCC;margin-bottom:20px;padding-bottom:2%;">
-
-			<h1>
-				<span class="label label-default"></span> ${job.jobTitle}
-			</h1>
-			<label>Location : </label><span>${job.jobLocation }</span>
-			<p><label>Job Description : </label> ${job.jobDescription }</p><br/>
-			
-			<label>Skills : </label><span>${job.keySkills }</span><br/>
-			<label>Experience : </label><span>${job.experience }</span><br/>
-			<label>Job Profile : </label><span>${job.jobProfile }</span><br/>
-			
-			<label>Company Profile</label><br/>
-			<p>${job.company.companyDesc}</p>
-			<br/>
-			<a href="<c:url value='/job/apply?id='/>${job.id}" class="btn btn-primary">Apply</a>
-			
+		<div class="col-xs-8">
+			<h1>${job.exam.name} - <span class='pull-right' style="color:red"><span style="font-size: 16px;" class='glyphicon glyphicon-time'></span> <span style="font-size: 20px;">Time : <span id="time"></span></span></span></h1>
+			<form id="exam" action="">
+			<c:forEach items="${job.exam.questions}" var="question">
+				<div class="col-xs-12" style="border:1px solid #EEE; padding:2%;margin-bottom:2%;">
+					<div class="col-xs-12">
+						<label> ${question.question} </label>
+					</div>
+					<c:forEach items="${question.options}" var="option">
+						<div class="col-xs-6"> <input type="radio" name="${question.id}"/> ${option.option}</div>
+					</c:forEach>
+				</div>
+			</c:forEach>
+			<button class="btn btn-primary">Submit</button>
+			</form>
 		</div>
 	</div>
 	<script src='<c:url value="/resources/js/jquery.js"/>'></script>
 	<script src='<c:url value="/resources/js/bootstrap.js"/>'></script>
+	<script>
+		var time = 900000;
+		$("#time").text((time/60000).toFixed(2));
+		$(document).ready(function(){
+
+
+			window.setInterval(function(){
+				time = time - 1000;
+				$("#time").text((time/60000).toFixed(2));
+				
+				if(time <= 0){
+					$("#exam").submit();	
+				}
+			}, 1000);
+		});
+		
+	</script>
 </body>
 </html>

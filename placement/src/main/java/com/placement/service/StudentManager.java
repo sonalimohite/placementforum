@@ -25,5 +25,8 @@ public class StudentManager {
 	public List<Student> getAllStudents(){
 		return studentDao.getAllStudent();
 	}
+	public Student getById(Integer id){
+		return studentDao.getById(id);
+	}
 
 }

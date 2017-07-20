@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.placement.model.Company;
+import com.placement.model.Exam;
 import com.placement.model.Job;
+import com.placement.model.Student;
 import com.placement.service.CompanyManager;
+import com.placement.service.ExamManager;
 import com.placement.service.JobManager;
+import com.placement.service.StudentManager;
 
 @Controller
 @RequestMapping(value = "/job")
@@ -27,14 +31,23 @@ public class JobController {
 
 	@Autowired
 	CompanyManager companyManager;
+	
+	@Autowired
+	StudentManager studentManager;
 
+	@Autowired
+	ExamManager examManager;
+	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public void save(HttpServletRequest request, HttpServletResponse response, Job c) throws IOException {
+	public void save(HttpServletRequest request, HttpServletResponse response, Job job) throws IOException {
 		HttpSession session = request.getSession();
 		int companyId = (int) session.getAttribute("companyId");
 		Company company = companyManager.getById(companyId);
-		c.setCompany(company);
-		jobManager.save(c);
+		job.setCompany(company);
+		
+		Exam exam = examManager.getById(job.getExam().getId());
+		job.setExam(exam);
+		jobManager.save(job);
 		response.sendRedirect(request.getContextPath() + "/company/profile");
 	}
 
@@ -57,5 +70,21 @@ public class JobController {
 		return mv;
 
 	}
+	
+	@RequestMapping(value="/apply", method=RequestMethod.GET)
+	public ModelAndView apply(HttpServletRequest request, HttpServletResponse response, @RequestParam Integer id) throws IOException{
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute("studentId") != null){
+			Integer sId=(Integer) session.getAttribute("studentId");
+			Student student=studentManager.getById(sId);
+			Job job = jobManager.getJobById(id);
+			ModelAndView mv = new ModelAndView("exam");
+			mv.addObject("job", job);
+			mv.addObject("student",student);
+			return mv;
+		}
+		response.sendRedirect(request.getContextPath()+"/login");
+		return null;
+	}	
 
 }

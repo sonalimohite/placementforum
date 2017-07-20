@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.placement.model.Company;
+import com.placement.model.Exam;
 import com.placement.model.Job;
 import com.placement.service.CompanyManager;
+import com.placement.service.ExamManager;
 import com.placement.service.JobManager;
 
 @Controller
@@ -29,6 +31,9 @@ public class CompanyController {
 
 	@Autowired
 	private JobManager jobManager;
+	
+	@Autowired
+	private ExamManager examManager;
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public ModelAndView profile(HttpServletRequest request) {
@@ -37,10 +42,12 @@ public class CompanyController {
 		Integer companyId = (Integer) session.getAttribute("companyId");
 		Company c = companyManager.getById(companyId);
 		List<Job> jobs = jobManager.getJobsByCompanyId(companyId);
+		List<Exam> exam=examManager.getAllExam(companyId); 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("companyProfile");
 		mv.addObject("company", c);
 		mv.addObject("jobs", jobs);
+		mv.addObject("exams", exam);
 		return mv;
 	}
 	
