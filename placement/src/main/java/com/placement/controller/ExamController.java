@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.placement.dto.AnswerDto;
 import com.placement.model.Company;
 import com.placement.model.Exam;
 import com.placement.service.CompanyManager;
@@ -49,6 +51,16 @@ public class ExamController {
 		exam.setCompany(company);
 		examManager.save(exam);
 		return true;
+	}
+	
+	@RequestMapping(value="/submit", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean submit(HttpServletRequest request, @RequestBody List<AnswerDto> anwsers, @RequestParam Integer jobId){
+		HttpSession session = request.getSession(false);
+		Integer studentId = (Integer) session.getAttribute("studentId");
+		examManager.calculateScore(anwsers, studentId, jobId); 
+		return true;
+		
 	}
 
 }

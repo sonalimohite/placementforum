@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.placement.dao.CompanyDao;
-import com.placement.dto.CompanyDto;
 import com.placement.model.Company;
 
 @Service("companyManager")

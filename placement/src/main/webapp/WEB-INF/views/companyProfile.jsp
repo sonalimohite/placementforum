@@ -74,8 +74,9 @@
 
 							</div>
 							<div class="panel-footer">
-								<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+								<a href="<c:url value='/job/viewParticipant?id='/>${job.id}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> View Participants</a>
 								<a href="<c:url value='/job/delete?id='/>${job.id}" class="btn btn-danger"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a>
+								
 							</div>
 						</div>
 					</div>

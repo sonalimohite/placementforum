@@ -1,6 +1,7 @@
 package com.placement.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.placement.model.Company;
 import com.placement.model.Exam;
 import com.placement.model.Job;
+import com.placement.model.Result;
 import com.placement.model.Student;
 import com.placement.service.CompanyManager;
 import com.placement.service.ExamManager;
@@ -31,20 +33,20 @@ public class JobController {
 
 	@Autowired
 	CompanyManager companyManager;
-	
+
 	@Autowired
 	StudentManager studentManager;
 
 	@Autowired
 	ExamManager examManager;
-	
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public void save(HttpServletRequest request, HttpServletResponse response, Job job) throws IOException {
 		HttpSession session = request.getSession();
 		int companyId = (int) session.getAttribute("companyId");
 		Company company = companyManager.getById(companyId);
 		job.setCompany(company);
-		
+
 		Exam exam = examManager.getById(job.getExam().getId());
 		job.setExam(exam);
 		jobManager.save(job);
@@ -70,21 +72,37 @@ public class JobController {
 		return mv;
 
 	}
-	
-	@RequestMapping(value="/apply", method=RequestMethod.GET)
-	public ModelAndView apply(HttpServletRequest request, HttpServletResponse response, @RequestParam Integer id) throws IOException{
+
+	@RequestMapping(value = "/apply", method = RequestMethod.GET)
+	public ModelAndView apply(HttpServletRequest request, HttpServletResponse response, @RequestParam Integer id)
+			throws IOException {
 		HttpSession session = request.getSession(false);
-		if(session != null && session.getAttribute("studentId") != null){
-			Integer sId=(Integer) session.getAttribute("studentId");
-			Student student=studentManager.getById(sId);
+		if (session != null && session.getAttribute("studentId") != null) {
+			Integer sId = (Integer) session.getAttribute("studentId");
+			Student student = studentManager.getById(sId);
 			Job job = jobManager.getJobById(id);
+			Result result = examManager.getResult(sId, id);
+
 			ModelAndView mv = new ModelAndView("exam");
 			mv.addObject("job", job);
-			mv.addObject("student",student);
+			mv.addObject("student", student);
+			mv.addObject("id", id);
+			mv.addObject("hasApplied", result != null ? true : false);
 			return mv;
 		}
-		response.sendRedirect(request.getContextPath()+"/login");
+		response.sendRedirect(request.getContextPath() + "/login");
 		return null;
-	}	
+	}
+
+	@RequestMapping(value = "/viewParticipant", method = RequestMethod.GET)
+	public ModelAndView viewParticipant(@RequestParam Integer id) {
+
+		List<Result> result = examManager.getResult(id);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("participants");
+		mv.addObject("results", result);
+
+		return mv;
+	}
 
 }
