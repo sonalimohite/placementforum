@@ -1,3 +1,8 @@
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+    response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+    response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -33,6 +38,7 @@
 					<li><a href="#">About</a></li>
 					<li><a href="<c:url value='/company/list'/>">Companies</a></li>
 					<li><a href="<c:url value='/student/list'/>">Student</a></li>
+					<li><a href="<c:url value="/login"/>">Login</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -105,7 +111,7 @@
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-open"></span> Register</button>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-floppy-open"></span> Register</button>
 					</div>
 				</div>
 			</form>

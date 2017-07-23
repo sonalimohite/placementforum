@@ -87,9 +87,9 @@ public class ExamManager {
 		resultDao.save(result);
 		
 		String message = "Hi "+ student.getFirstName() + " "+ student.getLastName();
-		message += "\n You have applied for job "+ job.getJobTitle() +", and your score of online exam is : " + score + " out of "+total; 
-		message += "\n \t Out HR manager "+ job.getCompany().getHrName() +" will send you further details if you are selected for this job opening";
-		message += "\n Thank you for applying at "+ job.getCompany().getName();
+		message += "\n\n You have applied for job "+ job.getJobTitle() +", and your score of online exam is : " + score + " out of "+total; 
+		message += "\n Our HR manager "+ job.getCompany().getHrName() +" will send you further details if you are selected for this job opening.";
+		message += "\n\n\n Thank you for applying at "+ job.getCompany().getName();
 		
 		mailManager.send(student.getEmail(), job.getCompany().getName() + " Exam Result" , message);
 		

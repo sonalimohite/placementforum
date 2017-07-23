@@ -42,12 +42,18 @@ public class JobDao {
 		query.setParameter("id", companyId);
 		return query.list();
 	}
-	
-	public Job  getJobById(Integer id){
-		 
+
+	public Job getJobById(Integer id) {
+
 		Query query = getSession().createQuery("select a from Job a where a.id=:id");
 		query.setParameter("id", id);
 		return (Job) query.uniqueResult();
+	}
+
+	public List<Job> getJobBySkill(String searchString) {
+		Query query = getSession().createQuery("Select j from Job j where j.keySkills like :searchString");
+		query.setParameter("searchString", "%" + searchString + "%");
+		return query.list();
 	}
 
 }

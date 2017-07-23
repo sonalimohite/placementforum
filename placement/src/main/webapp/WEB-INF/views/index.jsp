@@ -1,3 +1,9 @@
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+    response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+    response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -37,9 +43,16 @@
                     <li>
                         <a href="<c:url value='student/list'/>">Students</a>
                     </li>
-                    <li>
-                    	<a href="<c:url value="/login"/>">Login</a>
-                    </li>
+                    <c:if test="${name == null}">
+	                    <li>
+	                    	<a href="<c:url value="/login"/>">Login</a>
+	                    </li>
+                    </c:if>
+                    <c:if test="${name != null}">                
+	                  	<li>
+	                    	<a href="<c:url value="/auth/logout"/>">Logout</a>
+	                    </li>
+                    </c:if>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -54,25 +67,41 @@
         <!-- header class="jumbotron hero-spacer" 
         style="background-image: url('<c:url value="/resources/img/jobs.jpg"/>');background-repeat: no-repeat;background-size: cover;" -->
          <header class="jumbotron hero-spacer">
-            <h1>Welcome!</h1>
-            <p>Looking for a job register as student, or looking for employee register as company.</p>
-            <p><a class="btn btn-primary btn-large"  href='<c:url value="student/register"/>'>Register as Student</a>
             
-			
-			<a class="btn btn-primary btn-large" href='<c:url value="company/register"/>'>Register as Company</a>
-            </p>
+            <c:if test="${name != null }">
+            	<h1>Welcome ${name}!</h1>
+            </c:if>
+            
+            <c:if test="${name == null }">
+            	<h1>Welcome !</h1>
+           
+	            <p>Looking for a job register as student, or looking for employee register as company.</p>
+	            <p><a class="btn btn-primary btn-large"  href='<c:url value="student/register"/>'>Register as Student</a>
+	            
+				
+				<a class="btn btn-primary btn-large" href='<c:url value="company/register"/>'>Register as Company</a>
+	            </p>
+             </c:if>
         </header>
 
-        <hr>
+       
 
         <!-- Title -->
         <div class="row">
-            <div class="col-lg-12">
-                <!--  h3>Jobs</h3 -->
-            </div>
-        </div>
+			<div class="col-lg-12"
+				style="padding-left: 20%; padding-right: 20%; text-align: center;">
+				<form action="<c:url value='/search'/>" method="POST">
+					<input type="text" class="form-control" name="query"
+						placeholder='Enter skill to search for..' style="font-size: 18px;" />
+					<br />
+					<button type="submit" class="btn btn-primary" style="width: 200px;">Search</button>
+				</form>
+			</div>
+		</div>
         <!-- /.row -->
-
+        <br/>
+		<hr>
+		 
         <!-- Page Features -->
         <div class="row text-center">
         	<h2>Recent Posted Jobs</h2>

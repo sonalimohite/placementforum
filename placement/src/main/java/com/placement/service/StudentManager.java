@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.placement.dao.StudentDao;
+import com.placement.model.Job;
 import com.placement.model.Student;
 
 @Service("studentManager")
@@ -28,5 +29,4 @@ public class StudentManager {
 	public Student getById(Integer id){
 		return studentDao.getById(id);
 	}
-
 }

@@ -1,3 +1,8 @@
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+    response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+    response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -42,6 +47,8 @@
 		<!-- /.container -->
 	</nav>
 	<div class="container" >
+		<a  class="btn btn-primary pull-right" href="<c:url value='/company/profile'/>"><span class="glyphicon glyphicon-arrow-left"></span> Go back</a>
+				
 		<div class="col-xs-4" >
 			<table class="table table-bordered" >
 				<thead>
@@ -61,6 +68,7 @@
 		<div class="col-xs-8">
 			<div class="page-header">
 			  <h1>Exam <small>Add new</small></h1>
+			  
 			</div>
 			<form>
 			<input id="exam-name" type="text" name="name" class="form-control question" 
@@ -120,7 +128,8 @@
 			</div>
 			<div class="col-xs-12"  style="padding-top: 2%;margin-bottom:5%;">
 				<button id="add-question" class="btn btn-primary">Add Question</button>
-				<button id="save-exam" class="btn btn-primary">Save</button>
+				<button id="save-exam" class="btn btn-primary">Save</button><br/><br/>
+				
 			</div>
 			</form>
 			

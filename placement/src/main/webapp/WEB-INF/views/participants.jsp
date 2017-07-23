@@ -1,3 +1,8 @@
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+    response.setHeader("Pragma", "no-cache"); //HTTP 1.0
+    response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -43,7 +48,7 @@
 	</nav>
 
 	<div class="container">
-		<a href="<c:url value='/company/profile'/>" class="btn btn-primary pull-right"> Go Back</a>
+		<a href="<c:url value='/company/profile'/>" class="btn btn-primary pull-right"> <span class="glyphicon glyphicon-arrow-left"></span>  Go Back</a>
 			<table class="table table-bordered" style="margin-top:5%">
 				<thead>
 					<tr>

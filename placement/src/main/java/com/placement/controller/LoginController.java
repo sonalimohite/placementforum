@@ -32,6 +32,7 @@ public class LoginController {
 		if (company != null) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("companyId", company.getId());
+			session.setAttribute("name", company.getName());
 			response.sendRedirect(request.getContextPath() + "/company/profile");
 			return null;
 		}
@@ -40,6 +41,7 @@ public class LoginController {
 		if(student != null){
 			HttpSession session = request.getSession(true);
 			session.setAttribute("studentId", student.getId());
+			session.setAttribute("name", student.getFirstName() + " " + student.getLastName());
 			response.sendRedirect(request.getContextPath());
 			return null;
 		}		

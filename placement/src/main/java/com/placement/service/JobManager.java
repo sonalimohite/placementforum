@@ -37,4 +37,8 @@ public class JobManager {
 	public Job getJobById(Integer id) {
 		return jobDao.getJobById(id);
 	}
+
+	public List<Job> getJobBySkill(String query) {
+		return jobDao.getJobBySkill(query);
+	}
 }
