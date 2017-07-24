@@ -70,17 +70,19 @@
 			  <h1>Exam <small>Add new</small></h1>
 			  
 			</div>
-			<form>
+			<form id='exam-center-form'>
+			<div class="input-group" style="width:100%;">
 			<input id="exam-name" type="text" name="name" class="form-control question" 
 					data-validation="required"
 					data-validation-error-msg="Exam Title is Required."
 					placeholder="Please Enter Exam Title">
+			</div>
 			<hr/>	
 			<div id="question-container">
 				<div id="question-template" class="col-xs-12" style="border:1px solid #CCC;padding-top:2%;padding-bottom:2%;margin-bottom:2%;">
 					<div class="form-group">
 					    <label for="exampleInputEmail1">Question</label>
-					    <input type="text" name="question" class="form-control" placeholder="Enter question">
+					    <input type="text" name="question" class="form-control" placeholder="Enter question" data-validation="required">
 					</div>	
 					<div class='col-xs-12'>
 						<div class='col-xs-6'>
@@ -90,7 +92,7 @@
 							      <span class="input-group-addon">
 							        <input type="radio" name="answer">
 							      </span>
-							    <input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;'>
+							    <input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;' data-validation="required">
 								</div>
 							</div>
 							<div class="form-group">
@@ -99,7 +101,7 @@
 							    	<span class="input-group-addon">
 							        	<input type="radio" name="answer">
 							      	</span>
-							    	<input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;'>
+							    	<input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;' data-validation="required">
 								</div>
 							</div>
 						</div>
@@ -110,7 +112,7 @@
 							    	<span class="input-group-addon">
 							        	<input type="radio" name="answer">
 							      	</span>
-								    <input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;'>
+								    <input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;' data-validation="required">
 									</div>
 							</div>
 							<div class="form-group">
@@ -119,7 +121,7 @@
 							    	<span class="input-group-addon">
 							        	<input type="radio" name="answer">
 							      	</span>
-								    <input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;'>
+								    <input type="text" class="form-control option" placeholder="Enter Option" style='width:60%;' data-validation="required">
 									</div>
 							</div>
 						</div>
@@ -128,7 +130,7 @@
 			</div>
 			<div class="col-xs-12"  style="padding-top: 2%;margin-bottom:5%;">
 				<button id="add-question" class="btn btn-primary">Add Question</button>
-				<button id="save-exam" class="btn btn-primary">Save</button><br/><br/>
+				<button id="save-exam1" class="btn btn-primary">Save</button><br/><br/>
 				
 			</div>
 			</form>
@@ -149,54 +151,62 @@
 				var count = $("#question-container > div").length;
 				$(question).removeAttr("id");
 				$(question).find("input[type='text']").val("");
+				$(question).find(".has-error").removeClass("has-error");
+				$(question).find(".form-error").hide();
+				$(question).find(".form-control").removeAttr("style");
+				 
+				
 				$(question).find("input[type='radio']").attr("name", "answer_"+count)
 				$("#question-container").append(question);
 			});
 			
-			$("#save-exam").click(function(e){
-				e.preventDefault();
-				var questions = [];
-				var btn = $("#save-exam").button("loading");
-				$("#question-container > div").each(function(index,element){
-					var obj = {
-							"question" : null,
-							"options": []
-					};
-					var que = $(element).find("input[name='question']").val();
-					obj.question = que;
-					
-					$(element).find(".option").each(function(i, e){
-						var opt = {
-								"option" : null,
-								"answer": false
+			$.validate({
+			    form : '#exam-center-form',
+			    onSuccess : function($form) {
+			    	var questions = [];
+					var btn = $("#save-exam").button("loading");
+					$("#question-container > div").each(function(index,element){
+						var obj = {
+								"question" : null,
+								"options": []
 						};
+						var que = $(element).find("input[name='question']").val();
+						obj.question = que;
 						
-						opt.option = $(e).val();
-						opt.answer = $(e).parent().find("[type='radio']").is(":checked");
-						
-						obj.options.push(opt);
-					});					
-					questions.push(obj);	
-				});
-				
-				var exam = {
-						"name" : $("#exam-name").val(),
-						"questions": questions
-				};
-				
-				 $.ajax({
-				      type: "POST",
-				      contentType : 'application/json; charset=utf-8',
-				      dataType : 'json',
-				      url: "<c:url value='/exam/save'/>",
-				      data: JSON.stringify(exam), 
-				      success :function(result) {
-				    	  $("input").val("");
-				    	  $(btn).button("reset");
-				    	  location.reload();				      
-				     }
-				  });
-			});					
+						$(element).find(".option").each(function(i, e){
+							var opt = {
+									"option" : null,
+									"answer": false
+							};
+							
+							opt.option = $(e).val();
+							opt.answer = $(e).parent().find("[type='radio']").is(":checked");
+							
+							obj.options.push(opt);
+						});					
+						questions.push(obj);	
+					});
+					
+					var exam = {
+							"name" : $("#exam-name").val(),
+							"questions": questions
+					};
+					
+					$.ajax({
+					      type: "POST",
+					      contentType : 'application/json; charset=utf-8',
+					      dataType : 'json',
+					      url: "<c:url value='/exam/save'/>",
+					      data: JSON.stringify(exam), 
+					      success :function(result) {
+					    	  $("input").val("");
+					    	  $(btn).button("reset");
+					    	  location.reload();				      
+					     }
+					});
+			      	return false; // Will stop the submission of the form
+			    }
+			});
 		});
 	</script>
 </body>

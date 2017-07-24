@@ -26,19 +26,19 @@ public class ExamManager {
 
 	@Autowired
 	private ExamDao examDao;
-	
+
 	@Autowired
 	private QuestionDao questionDao;
-	
-	@Autowired 
+
+	@Autowired
 	private JobDao jobDao;
-	
+
 	@Autowired
 	private StudentDao studentDao;
-	
+
 	@Autowired
 	private ResultDao resultDao;
-	
+
 	@Autowired
 	private MailManager mailManager;
 
@@ -52,55 +52,60 @@ public class ExamManager {
 		}
 		examDao.save(exam);
 	}
-	
-	public Exam getById(int id){
+
+	public Exam getById(int id) {
 		return examDao.getById(id);
 	}
-	
+
 	public List<Exam> getAllExam(int companyId) {
 		return examDao.getAllExam(companyId);
 	}
-	
-	public void calculateScore(List<AnswerDto> answers, Integer studentId, Integer jobId){
-		
+
+	public void calculateScore(List<AnswerDto> answers, Integer studentId, Integer jobId) {
+
 		int score = 0;
 		int total = 0;
-		for(AnswerDto answer : answers){
+		for (AnswerDto answer : answers) {
 			Question question = questionDao.getById(answer.getQuestionId());
-			for(Option opt : question.getOptions()){
-				if(opt.isAnswer() && answer.getAnswerId().equals(opt.getId())){
+			for (Option opt : question.getOptions()) {
+				if (opt.isAnswer() && answer.getAnswerId().equals(opt.getId())) {
 					score++;
 				}
 			}
 			total++;
 		}
-		
+
 		Student student = studentDao.getById(studentId);
-		Job job=jobDao.getJobById(jobId);
-		
-		
-		Result result=new Result();
+		Job job = jobDao.getJobById(jobId);
+
+		Result result = new Result();
 		result.setJob(job);
 		result.setScore(score);
 		result.setStudent(student);
 		result.setTotal(total);
 		resultDao.save(result);
-		
-		String message = "Hi "+ student.getFirstName() + " "+ student.getLastName();
-		message += "\n\n You have applied for job "+ job.getJobTitle() +", and your score of online exam is : " + score + " out of "+total; 
-		message += "\n Our HR manager "+ job.getCompany().getHrName() +" will send you further details if you are selected for this job opening.";
-		message += "\n\n\n Thank you for applying at "+ job.getCompany().getName();
-		
-		mailManager.send(student.getEmail(), job.getCompany().getName() + " Exam Result" , message);
-		
+
+		String message = "Hi " + student.getFirstName() + " " + student.getLastName();
+		message += "\n\n You have applied for job " + job.getJobTitle() + ", and your score of online exam is : "
+				+ score + " out of " + total;
+		message += "\n Our HR manager " + job.getCompany().getHrName()
+				+ " will send you further details if you are selected for this job opening.";
+		message += "\n\n\n Thank you for applying at " + job.getCompany().getName();
+
+		mailManager.send(student.getEmail(), job.getCompany().getName() + " Exam Result", message);
+
 	}
-   
-	public Result getResult(Integer studentId,Integer jobId){
+
+	public Result getResult(Integer studentId, Integer jobId) {
 		return resultDao.getResult(studentId, jobId);
 	}
-	
-	public List<Result> getResult(Integer jobId){
+
+	public List<Result> getResult(Integer jobId) {
 		return resultDao.getResult(jobId);
 	}
-	
+
+	public List<Result> getResultByStudent(Integer studentId) {
+		return resultDao.getResultByStudent(studentId);
+	}
+
 }

@@ -89,7 +89,7 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span> 
-												<input class="form-control" placeholder="Username" name="username" type="text" data-validation="required" autofocus>
+												<input class="form-control" placeholder="Username" name="username" type="text" data-validation="email" autofocus>
 											</div>
 										</div>
 										<div class="form-group">

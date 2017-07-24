@@ -37,5 +37,13 @@ public class ResultDao {
 		query.setParameter("id", jobId);
 		return query.list();
 	}
+	
+	public List<Result> getResultByStudent(Integer studentId){
+		Query query=getSession().createQuery("select r from Result r where r.student.id=:id");
+		query.setParameter("id", studentId);
+		return query.list();
+
+	}
+	
 
 }

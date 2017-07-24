@@ -62,6 +62,11 @@
 			<c:forEach items="${jobs}" var="job">
      			<div class="col-md-3 col-sm-6 hero-feature">
 	                <div class="thumbnail">
+	                	<c:forEach items="${appliedJobIds}" var="appliedJob">
+							<c:if test="${appliedJob.job.id eq job.id}">
+								<span class="label label-success pull-right">Applied</span>
+							</c:if>
+						</c:forEach>
 	                   <!--  <img src="http://placehold.it/800x500" alt=""> -->
 	                    <div class="caption">
 	                        <h3>${job.jobTitle}</h3>

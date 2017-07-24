@@ -54,7 +54,9 @@
 	                    </li>
                     </c:if>
                 </ul>
+                <!--  span class="pull-right">${name}</span -->
             </div>
+            
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -62,6 +64,7 @@
 
     <!-- Page Content -->
     <div class="container">
+    	<span class="pull-right">${name}</span>
 
         <!-- Jumbotron Header -->
         <!-- header class="jumbotron hero-spacer" 
@@ -108,15 +111,22 @@
 			<c:forEach items="${uiJobs}" var="job">
      			<div class="col-md-3 col-sm-6 hero-feature">
 	                <div class="thumbnail">
+	                	<c:forEach items="${appliedJobIds}" var="appliedJob">
+							<c:if test="${appliedJob.job.id eq job.id}">
+								<span class="label label-success pull-right">Applied</span>
+							</c:if>
+						</c:forEach>
 	                   <!--  <img src="http://placehold.it/800x500" alt=""> -->
 	                    <div class="caption">
-	                        <h3>${job.jobTitle}</h3>
+	                        <h3>${job.jobTitle}
+							</h3>
 	                        <span>${job.company.name}</span>
 	                        
 	                        <p>Skills : ${job.keySkills}</p>
 	                        <p>
 	                            <a href="<c:url value='/job/view?id='/>${job.id}" class="btn btn-primary">Apply</a> 
 	                        </p>
+	                        
 	                    </div>
 	                </div>
 	            </div>
